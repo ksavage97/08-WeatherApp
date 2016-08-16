@@ -1,3 +1,5 @@
+//factory
+
 (function() {
     'use strict';
 
@@ -5,6 +7,7 @@
         .module('weatherApp')
         .factory('weatherFactory', weatherFactory);
 
+        //injecting parameters to the factory
     weatherFactory.$inject = ['$http', '$q'];
 
     function weatherFactory($http, $q) {
@@ -14,10 +17,11 @@
 
         return service;
 
-        function getWeather(cityID) {
+        function getWeather(places) {
             var deferred = $q.defer();
 
-            $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + cityID + '&units=imperial&APPID=54b59343737e083268dc1e528e78ecbb').then(
+            //communicating with the api
+            $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + places + '&units=imperial&APPID=54b59343737e083268dc1e528e78ecbb').then(
                 function(response) {
                     deferred.resolve(response.data);
                 },
@@ -26,6 +30,7 @@
                 }
             );
 
+            //returns the array
             return deferred.promise;
         }
 

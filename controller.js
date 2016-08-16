@@ -1,3 +1,5 @@
+//controller
+
 (function() {
     'use strict';
 
@@ -5,17 +7,23 @@
         .module('weatherApp')
         .controller('weatherController', weatherController);
 
-    weatherController.$inject = ['weatherFactory'];
+        //injecting the factory into the controller
+    	weatherController.$inject = ['weatherFactory'];
+
+
 
     function weatherController(weatherFactory) {
         var vm = this;
-        var cityID = vm.cityID;
         vm.searchInput = {};
         vm.searchResults = [];
+
+        //what happens on click   
         vm.inputResults = function(places) {
 
-            vm.searchResults.push(angular.copy(places));
+            //pushing our search into search results array
+            vm.searchResults.push({ 'name': places, 'date': new Date() });
 
+            //retrieving the data from the factory
             weatherFactory.getWeather(places).then(
                 function(data) {
                     vm.place = data;
