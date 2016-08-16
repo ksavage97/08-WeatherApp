@@ -1,0 +1,102 @@
+<DOCTYPE! html>
+    <html ng-app="weatherApp">
+
+    <head>
+        <title>Weather App</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    </head>
+
+    <body ng-controller="weatherController as weathers">
+        <div class="container">
+            <div class="row">
+                <h1>Origin Weather Application</h1>
+                <h2>Always know if you'll need an umbrella!</h2>
+            </div>
+            <div class="row">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="#">San Diego</a></li>
+                    <button ng-click="weathers.inputResults('san diego')" href="#" role="presentation">San Diego</button>
+                     <button ng-click="weathers.inputResults('new york')" href="#" role="presentation">New York</button>
+                      <button ng-click="weathers.inputResults('washington dc')" href="#" role="presentation">Washington D.C</button>
+                       <button ng-click="weathers.inputResults('london')" href="#" role="presentation">london</button>
+                        <button ng-click="weathers.inputResults('tokyo')" href="#" role="presentation">Tokyo</button>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="input-group">
+                    <input ng-model="weathers.searchInput.name" type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+        <button ng-click="weathers.inputResults(weathers.searchInput.name)" class="btn btn-default" type="button">Go!</button>
+      </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">City Information</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                <h2><img ng-src="http://openweathermap.org/img/w/{{weathers.place.weather[0].icon}}.png" />{{weathers.place.name}}</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-4">
+                                    Lat/Long: {{weathers.place.coord.lat}}, {{weathers.place.coord.lon}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Temperature (F)</p>
+                                    <p>{{weathers.place.main.temp}}F</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Pressure</p>
+                                    <p>{{weathers.place.main.pressure / 100}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Humidity</p>
+                                    <p>{{weathers.place.main.humidity}}%</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p>Lowest Temp (F)</p>
+                                    <p>{{weathers.place.main.temp_min}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Highest Temp (F)</p>
+                                    <p>{{weathers.place.main.temp_max}}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p>Wind Speed</p>
+                                    <p>{{weathers.place.wind.speed}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Search History</div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr ng-repeat="items in weathers.searchResults">
+                                    <td>{{items.name}}</td>
+                                    <td>{{items.date | date}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+        <script src="factory.js"></script>
+    </body>
+
+    </html>
