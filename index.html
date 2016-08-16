@@ -5,6 +5,7 @@
         <title>Weather App</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        
     </head>
 
     <body ng-controller="weatherController as weathers">
@@ -58,30 +59,32 @@
                                     </div><hr>
                                     <div class="row">
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Temperature (F)</strong></p>
-                                            <p class="text-success"><strong>{{weathers.place.main.temp}}F</strong></p>
+                                        <strong>
+                                            <p>Temperature (F)</p>
+                                            <p class="text-success">{{weathers.place.main.temp}}F</p>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Pressure</strong></p>
+                                            <p>Pressure</p>
                                             <p class="text-success">{{weathers.place.main.pressure}}</p>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Humidity</strong></p>
+                                            <p>Humidity</p>
                                             <p class="text-success">{{weathers.place.main.humidity}}%</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Lowest Temp (F)</strong></p>
-                                            <p>{{weathers.place.main.temp_min}}</p>
+                                            <p>Lowest Temp (F)</p>
+                                            <p class="text-success">{{weathers.place.main.temp_min}}</p>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Highest Temp (F)</strong></p>
-                                            <p>{{weathers.place.main.temp_max}}</p>
+                                            <p>Highest Temp (F)</p>
+                                            <p class="text-success">{{weathers.place.main.temp_max}}</p>
                                         </div>
                                         <div class="col-md-4 text-center">
-                                            <p><strong>Wind Speed</strong></p>
-                                            <p>{{weathers.place.wind.speed}}</p>
+                                            <p>Wind Speed</p>
+                                            <p class="text-success">{{weathers.place.wind.speed}}</p>
+                                            </strong>
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +96,7 @@
                                 <div class="panel-body">
                                     <table class="table">
                                         <tr ng-repeat="item in weathers.searchResults">
-                                            <td class="col-md-10">{{item.name}}</td>
+                                            <td class="col-md-10 text-capitalize">{{item.name}}</td>
                                             <td class="col-md-2">{{item.date | date : "shortDate"}}
                                                 <br> {{item.date | date: "shortTime"}}</td>
                                         </tr>

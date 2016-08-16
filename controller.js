@@ -21,7 +21,8 @@
         vm.inputResults = function(places) {
 
             //pushing our search into search results array
-            vm.searchResults.push({ 'name': places, 'date': new Date() });
+            vm.searchResults.unshift({ 'name': places, 'date': new Date() });
+
 
             //retrieving the data from the factory
             weatherFactory.getWeather(places).then(
@@ -29,6 +30,7 @@
                     vm.place = data;
                 },
                 function(error) {});
+
         };
 
 
